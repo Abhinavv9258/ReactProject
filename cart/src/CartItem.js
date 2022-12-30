@@ -7,12 +7,18 @@ class CartItem extends React.Component {
     constructor(){
         super();
         this.state = {
-            price:999,
-            title:'Phone',
-            qty:1,
-            img:''
+            price: 999,
+            title: 'Phone',
+            qty: 1,
+            img: ''
         }
+        // this.increaseQuantity = this.increaseQuantity.bind(this);
     }
+
+    increaseQuantity = () => {
+            console.log('this.state',this.state);
+        }
+
     render() {
         const {price,title,qty} = this.state;
         return (
@@ -26,9 +32,19 @@ class CartItem extends React.Component {
                     <div style={{color:'#777'}}>Qty: {qty}</div>
                     <div className="cart-item-actions">
                         {/* Button */}
-                        <img alt="increase" className="action-icons" src="https://cdn-icons-png.flaticon.com/512/992/992651.png"/>
-                        <img alt="decrease" className="action-icons" src="https://cdn-icons-png.flaticon.com/512/992/992683.png"/>
-                        <img alt="delete" className="action-icons" src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png"/>
+                        <img 
+                        alt="increase" className="action-icons" 
+                        src="https://cdn-icons-png.flaticon.com/512/992/992651.png"
+                        onClick={this.increaseQuantity}
+                        />
+                        <img 
+                        alt="decrease" className="action-icons" 
+                        src="https://cdn-icons-png.flaticon.com/512/992/992683.png"
+                        />
+                        <img 
+                        alt="delete" className="action-icons" 
+                        src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png"
+                        />
                     </div>
                 </div>
             </div>
@@ -37,12 +53,11 @@ class CartItem extends React.Component {
 }
 
 const styles = {
-  image:{
-    height: 150,
-    width: 150,
-    borderRadius: 5
-  }
+    image: {
+        height: 150,
+        width: 150,
+        borderRadius: 5
+    }
 }
-
 
 export default CartItem;
