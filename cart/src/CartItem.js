@@ -1,5 +1,5 @@
 import React from 'react';
-import "./index.css";
+import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 // eslint-disable-next-line
@@ -14,11 +14,28 @@ class CartItem extends React.Component {
         }
         // this.increaseQuantity = this.increaseQuantity.bind(this);
     }
-
     increaseQuantity = () => {
-            console.log('this.state',this.state);
-        }
+        // console.log('this.state',this.state);
 
+        // from1
+        // this.setState({
+        //     qty: this.state.qty + 1
+        // });
+
+        // or from2
+        this.setState((preState) => {
+            return {
+                qty: preState.qty + 1
+            }
+        })
+    }
+    decreaseQuantity = () => {
+        // console.log('this.state',this.state);
+        this.setState((preState) => (
+            {qty: preState.qty? preState.qty-1: 0}
+        ))
+    }
+    
     render() {
         const {price,title,qty} = this.state;
         return (
@@ -40,6 +57,7 @@ class CartItem extends React.Component {
                         <img 
                         alt="decrease" className="action-icons" 
                         src="https://cdn-icons-png.flaticon.com/512/992/992683.png"
+                        onClick={this.decreaseQuantity}
                         />
                         <img 
                         alt="delete" className="action-icons" 
@@ -51,7 +69,6 @@ class CartItem extends React.Component {
         );
     }
 }
-
 const styles = {
     image: {
         height: 150,
@@ -59,5 +76,4 @@ const styles = {
         borderRadius: 5
     }
 }
-
 export default CartItem;
